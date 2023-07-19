@@ -3,13 +3,18 @@ import { useState } from "react";
 function Todo() {
   const [task, setTask] = useState("");
   console.log({ task });
+
+  function handleClick() {
+    setTask("Added");
+  }
+
   return (
     <>
       <div className="flex justify-center items-center p-2">
         <div className="w-2/3 bg-white rounded-3xl mx-auto overflow-hidden shadow-xl">
           <div className="px-10 pt-8 pb-6 bg-white rounded-tr-4xl">
             <form>
-              <div className="grid grid-cols-8 relative gap-2">
+              <div className="flex flex-row gap-2">
                 <input
                   value={task}
                   onChange={(event) => setTask(event.target.value)}
@@ -18,12 +23,32 @@ function Todo() {
                   type="text"
                   placeholder="john@doe.com"
                 />
+
                 <label className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
                   Add task here
                 </label>
-                <button className="rounded bg-rose-500 hover:bg-rose-400 text-white font-semibold text-center">
-                  Add
-                </button>
+
+                <div className="flex flex-row gap-3">
+                  <button
+                    onClick={handleClick}
+                    className="rounded bg-rose-500 hover:bg-rose-400 text-white font-semibold text-center"
+                  >
+                    Add
+                  </button>
+                  <button
+                    onClick={handleClick}
+                    className="rounded bg-rose-500 hover:bg-rose-400 text-white font-semibold text-center"
+                  >
+                    Delete
+                  </button>
+
+                  <button
+                    onClick={handleClick}
+                    className="rounded bg-rose-500 hover:bg-rose-400 text-white font-semibold text-center"
+                  >
+                    Edit
+                  </button>
+                </div>
               </div>
             </form>
           </div>
