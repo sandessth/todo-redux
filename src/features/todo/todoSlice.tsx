@@ -23,11 +23,18 @@ export const todoSlice = createSlice({
       const todo = state.find((todo) => todo.id === id);
       todo.text = text;
     },
+    changeStatus: (state, action) => {
+      const statusChange = state.find((todo) => todo.id === action.payload);
+      if (statusChange) {
+        statusChange.status = !statusChange.status;
+      }
+      //   console.log({state.status})
+    },
   },
 });
 
-// this is for dispatch
-export const { addTodo, deleteTodo, updateTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, updateTodo, changeStatus } =
+  todoSlice.actions;
 
 // this is for configureStore
 export default todoSlice.reducer;

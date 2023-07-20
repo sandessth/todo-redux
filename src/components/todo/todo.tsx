@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "../../features/todo/todoSlice";
 import { deleteTodo } from "../../features/todo/todoSlice";
 import { updateTodo } from "../../features/todo/todoSlice";
+import { changeStatus } from "../../features/todo/todoSlice";
 
 function Todo() {
   const [task, setTask] = useState("");
@@ -17,14 +18,19 @@ function Todo() {
   const handleDelete = (id) => {
     event.preventDefault();
     dispatch(deleteTodo(id));
-    console.log(id);
   };
+
   const handleEdit = (id) => {
     event.preventDefault();
     dispatch(updateTodo(id));
-    console.log(id);
   };
-  const handleAdd = (event) => {
+
+  const status = (id) => {
+    event.preventDefault();
+    dispatch(changeStatus(id));
+  };
+
+  const handleAdd = () => {
     event.preventDefault();
     if (!task) {
       toast.error("Task cannot be empty");
@@ -38,7 +44,7 @@ function Todo() {
   return (
     <>
       <div className="grid grid-cols-9 p-2">
-        <div className="col-span-2"></div>
+        <div className="col-span-1"></div>
         <div className="col-span-5 bg-white rounded-xl m-2 overflow-hidden shadow-xl">
           <div className="px-5 pt-8 pb-6 bg-white rounded-tr-4xl">
             <form>
@@ -64,12 +70,12 @@ function Todo() {
             </form>
           </div>
         </div>
-        {/* <div className="col-span-2 bg-white rounded-xl m-2 overflow-hidden shadow-xl">
+        <div className="col-span-2 bg-white rounded-xl m-2 overflow-hidden shadow-xl">
           <div className="px-5 pt-8 bg-white rounded-tr-4xl">
             <form>
               <select
-                value={filter}
-                onChange={(event) => setFilter(event.target.value)}
+                // value={filter}
+                // onChange={(event) => setFilter(event.target.value)}
                 className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900"
                 name="filter"
               >
@@ -80,21 +86,21 @@ function Todo() {
               </select>
             </form>
           </div>
-        </div> */}
+        </div>
       </div>
 
       {todos.map((tasks) => (
-        <div className="text-grey-900 bg-white rounded-xl m-2 overflow-hidden shadow-xl">
-          <div className="px-5 py-2 bg-white rounded-tr-4xl">
+        <div className="text-red-100 flex justify-center rounded-xl overflow-hidden">
+          <div className=" w-3/4 m-2 pb-1 shadow-xl">
             <ul>
               <li key={tasks.id}>
-                <div className="flex items-center justify-between m-2 border-b-2">
+                <div className="flex items-center justify-between ">
                   <div className="flex items-center">
                     <input
-                      className="mr-2 hover:bg-slate-900 items-center"
                       type="checkbox"
-                      // onChange={() => ChangeStatus(todo.id)}
-                      // checked={todo.status}
+                      className="appearance indeterminate:bg-gray-300 mr-2 hover:bg-slate-900 items-center"
+                      onChange={() => status(tasks.id)}
+                      checked={tasks.status}
                     />
 
                     <span>{tasks.text}</span>
