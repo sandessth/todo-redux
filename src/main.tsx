@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/homePage.tsx";
-import { Provider } from "react-redux";
 import store from "./store/store.ts";
+import { Provider } from "react-redux";
 
 const routerName = createBrowserRouter([
   {
