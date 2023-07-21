@@ -28,7 +28,6 @@ export const todoSlice = createSlice({
       if (statusChange) {
         statusChange.status = !statusChange.status;
       }
-      //   console.log({state.status})
     },
   },
 });
@@ -36,5 +35,4 @@ export const todoSlice = createSlice({
 export const { addTodo, deleteTodo, updateTodo, changeStatus } =
   todoSlice.actions;
 
-// this is for configureStore
 export default todoSlice.reducer;
