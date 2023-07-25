@@ -5,7 +5,7 @@ export const todoSlice = createSlice({
   name: "todos",
   initialState: [],
   reducers: {
-    addTodo: (state, action) => {
+    addTodo(state, action) {
       const todo = {
         id: uuidv4(),
         text: action.payload,
@@ -19,15 +19,17 @@ export const todoSlice = createSlice({
     },
     updateTodo: (state, action) => {
       const { id, text } = action.payload;
-
-      const todo = state.find((todo) => todo.id === id);
-      todo.text = text;
+      let foundElement = state.find((todo) => todo.id === id);
+      let index = state.indexOf(foundElement);
+      state[index].text = text;
+      return state;
     },
     changeStatus: (state, action) => {
       const statusChange = state.find((todo) => todo.id === action.payload);
       if (statusChange) {
         statusChange.status = !statusChange.status;
       }
+      return state;
     },
   },
 });
