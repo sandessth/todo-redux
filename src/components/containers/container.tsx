@@ -3,7 +3,7 @@ import Footer from "../footer/footer";
 
 function Container({ children }) {
   return (
-    <div className="bg-neutral-600">
+    <div className="bg-teal-600 h-screen">
       <NavBar />
       {children}
 
